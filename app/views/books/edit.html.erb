@@ -1,10 +1,13 @@
 <h2 class="big-title">Editing Book</h2>
 <% if @book.errors.any? %>
-  <% @book.errors.full_messages.each do |message| %>
-    <ul>
-        <li><%= message %></li>
-    </ul>
-  <% end %>
+ <div class="error-box">
+    <p class="error-count"><%= @book.errors.count%>errors prohibited this book from being saved:</p>
+      <% @book.errors.full_messages.each do |message| %>
+        <ul>
+            <li background-color: pink;class="error-text"><%= message %></li>
+        </ul>
+      <% end %>
+  </div>
 <% end %>
 <%= form_with model:@book, local:true do |f| %>
     <p class="title">Title</p>
@@ -16,5 +19,6 @@
     <span >|</span>
     <span><%= link_to "Back", books_path, class: "link-btn" %></span>
 <% end %>
+
 
 
